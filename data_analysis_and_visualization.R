@@ -38,7 +38,7 @@ needed_rows = nrow(data1)
 
 # on supprime les lignes supplémentaires au hasard :
 set.seed(42)
-data2_balanced <- data2[sample(nrow(data2), needed_rows), ] 
+data2_balanced = data2[sample(nrow(data2), needed_rows), ] 
 
 # on vérifie le nombre de lignes (on nécessite 163)
 nrow(data2_balanced) 
@@ -69,10 +69,10 @@ ggplot(data2_balanced, aes(x = DUREE)) +
 
 
 # on transforme la colonne APERTURE en facteur pour faire un histogramme :
-combined_data$APERTURE <- c(data1$APERTURE, data2_balanced$APERTURE)
+combined_data$APERTURE = c(data1$APERTURE, data2_balanced$APERTURE)
 levels(combined_data$APERTURE)
 str(combined_data$APERTURE)
-combined_data$APERTURE <- as.factor(combined_data$APERTURE)
+combined_data$APERTURE = as.factor(combined_data$APERTURE)
 
 # on fait un histogramme pour voir la distribution des niveaux d'aperture :
 ggplot(combined_data, aes(x = APERTURE)) +
@@ -106,9 +106,9 @@ ggplot(combined_data, aes(x = APERTURE, y = DUREE, color = DEBIT)) +
 
 
 # on fait l'ANOVA à deux facteurs :
-aov_result <- aov(DUREE ~ APERTURE * DEBIT, data = combined_data)
+aov_result = aov(DUREE ~ APERTURE * DEBIT, data = combined_data)
 summary(aov_result)
 
 # on fait le test-t :
-t_test_debit <- t.test(DUREE ~ DEBIT, data = combined_data)
+t_test_debit = t.test(DUREE ~ DEBIT, data = combined_data)
 
